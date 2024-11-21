@@ -31,7 +31,7 @@ def cock_fight(message):
     global tracked_message_id
     tracked_user_name = username
     add_player(message.from_user.id,username)
-    print("Player added sucessfully " + message.from_user.id + " " + username)
+    print("Player added sucessfully " + message.from_user.id(str) + " " + username)
     sent_message = bot.reply_to(message,username + " initiated a big cock fight, Reply to combat 3===D")
     tracked_message_id = sent_message.message_id
 
