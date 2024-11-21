@@ -1,5 +1,6 @@
 import os
 import telebot
+import random
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -16,5 +17,11 @@ def send_welcome(message):
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
     bot.reply_to(message, message.text + " Julian leckt keine Eier :)")
+
+@bot.message_handler(commands=['random'])
+def provide_random(message):
+    number = random.randInt(1,10)
+    bot.reply_to(message,"Fancy random number generator: " + number)
+
 
 bot.polling()
