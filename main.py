@@ -39,7 +39,7 @@ def cock_fight(message):
 @bot.message_handler(commands=['collectedPlayers'])
 def print_collected_players(message):
     for player in user_players.items():
-        bot.send_message(chat_id=message.chat.id,text=player[2])
+        print(f"- User ID: {player.user_id}, Name: {player.name}, Score: {player.score}")
 
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
