@@ -17,7 +17,7 @@ def send_welcome(message):
 @bot.message_handler(commands=['random'])
 def provide_random(message):
     number = random.randint(1,10)
-    bot.reply_to(message,"Fancy random number generator: " + number)
+    bot.reply_to(message,"Fancy random number generator: " + str(number))
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
