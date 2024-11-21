@@ -14,6 +14,7 @@ bot = telebot.TeleBot(TOKEN)
 
 tracked_message_id = None
 tracked_user_name = None
+tracked_user_id = None
 
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
@@ -27,9 +28,12 @@ def provide_random(message):
 @bot.message_handler(commands=['cockfight'])
 def cock_fight(message):
     username = message.from_user.username
+    userID = message.from_user.id
     global tracked_user_name
+    global tracked_user_id
     global tracked_message_id
     tracked_user_name = username
+    tracked_user_id = userID
     add_player(message.from_user.id,username)
     print("Player added sucessfully " + str(message.from_user.id) + " " + username)
     sent_message = bot.reply_to(message,username + " initiated a big cock fight, Reply to combat 3===D")
@@ -53,6 +57,7 @@ def handle_reply(message):
         bot.send_message(chat_id=message.chat.id,text ="Let's cockfight!")
         add_player(message.from_user.id,second_user_name)
         print("Player added sucessfully " + str(message.from_user.id) + " " + second_user_name)
+        cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
 
 
 @bot.message_handler(func=lambda msg: True)
