@@ -41,7 +41,7 @@ def print_collected_players(message):
     bot.send_message(chat_id=message.chat.id,text = "Trying to print collection")
     for player in user_players.items():
         name = player[0]
-        print(name)
+        bot.send_message(chat_id=message.chat.id, text=name)
 
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
