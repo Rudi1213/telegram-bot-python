@@ -34,6 +34,11 @@ def cock_fight(message):
     tracked_message_id = sent_message.message_id
     add_player(message.from_user.user.id,message.username)
 
+@bot.message_handler(commands=['collectedPlayers'])
+def printCollectedPlayers(message):
+    for player in user_players.items():
+        bot.send_message(chat_id=message.chat.id,text=player[2])
+
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
 def handle_reply(message):
@@ -44,10 +49,7 @@ def handle_reply(message):
         bot.send_message(chat_id=message.chat.id,text ="Let's cockfight!")
         add_player(message.from_user.user.id,message.username)
 
-@bot.message_handler(commands=['collectedPlayers'])
-def printCollectedPlayers(message):
-    for player in user_players.items():
-        bot.send_message(chat_id=message.chat.id,text=player[2])
+
 
 
 
