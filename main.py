@@ -77,6 +77,7 @@ def special_cock_bonus_create(message):
     special_cock_message_id = sent_message.message_id
     global special_cock_number
     special_cock_number = random.randint(1,10)
+    bot.send_message(chat_id=message.chat.id, text="SPECIAL COCK NUMBER" + str(special_cock_number))
     print("SPECIAL COCK NUMBER" + str(special_cock_number))
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
