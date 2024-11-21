@@ -38,6 +38,7 @@ def cock_fight(message):
 
 @bot.message_handler(commands=['collectedPlayers'])
 def print_collected_players(message):
+    bot.send_message8chat_id=message.chat.id,text = "Trying to print collection"
     for player in user_players.items():
         name = player[0]
         print(name)
