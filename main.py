@@ -10,6 +10,9 @@ load_dotenv()
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 bot = telebot.TeleBot(TOKEN)
 
+tracked_message_id = None
+tracked_user_name = None
+
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
     bot.reply_to(message, "Hello! I'm a simple Telegram bot.")
@@ -18,6 +21,25 @@ def send_welcome(message):
 def provide_random(message):
     number = random.randint(1,10)
     bot.reply_to(message,"Fancy random number generator: " + str(number))
+
+@bot.message_handler(commands=['cockfight'])
+def cock_fight(message):
+    username = message.from_user.username
+    global tracked_user_name
+    global tracked_message_id
+    tracked_user_name = username
+    sent_message = bot.reply_to(message,username + " initiated a big cock fight, Reply to combat 3===D")
+    tracked_message_id = sent_message.message_id
+
+@bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
+def handle_reply(message):
+
+    if message.reply_to_message.message_id == tracked_message_id:
+        second_user_name = message.from_user.username
+        bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
+        bot.send_message(chat_id=message.chat.id,text ="Let's cockfight!")
+
+
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
