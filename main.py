@@ -35,7 +35,7 @@ def cock_fight(message):
     add_player(message.from_user.user.id,message.username)
 
 @bot.message_handler(commands=['collectedPlayers'])
-def printCollectedPlayers(message):
+def print_collected_players(message):
     for player in user_players.items():
         bot.send_message(chat_id=message.chat.id,text=player[2])
 
