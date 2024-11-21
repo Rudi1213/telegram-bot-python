@@ -50,7 +50,7 @@ def handle_reply(message):
         bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
         bot.send_message(chat_id=message.chat.id,text ="Let's cockfight!")
         add_player(message.from_user.id,second_user_name)
-        print("Player added sucessfully " + message.from_user.id + " " + second_user_name)
+        print("Player added sucessfully " + message.from_user.id(str) + " " + second_user_name)
 
 
 @bot.message_handler(func=lambda msg: True)
