@@ -10,7 +10,7 @@ load_dotenv()
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 bot = telebot.TeleBot(TOKEN)
 
-@bot.message_handler(commands=['start', 'hello'])
+@bot.message_handler(commands=['start', 'hello', 'random'])
 def send_welcome(message):
     bot.reply_to(message, "Hello! I'm a simple Telegram bot.")
 
