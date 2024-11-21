@@ -30,9 +30,11 @@ def cock_fight(message):
     global tracked_user_name
     global tracked_message_id
     tracked_user_name = username
+    add_player(message.from_user.id,username)
+    print("Player added sucessfully " + message.from_user.id + " " + username)
     sent_message = bot.reply_to(message,username + " initiated a big cock fight, Reply to combat 3===D")
     tracked_message_id = sent_message.message_id
-    add_player(message.from_user.id,username)
+
 
 @bot.message_handler(commands=['collectedPlayers'])
 def print_collected_players(message):
@@ -48,11 +50,7 @@ def handle_reply(message):
         bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
         bot.send_message(chat_id=message.chat.id,text ="Let's cockfight!")
         add_player(message.from_user.id,second_user_name)
-
-
-
-
-
+        print("Player added sucessfully " + message.from_user.id + " " + second_user_name)
 
 
 @bot.message_handler(func=lambda msg: True)
