@@ -15,7 +15,8 @@ def register_commands(bot: TeleBot):
         BotCommand("hello", "Hello"),
         BotCommand("random", "Randoooom"),
         BotCommand("cockfight","Cockfight"),
-        BotCommand("collectedPlayers","Collected players")
+        BotCommand("collectedPlayers","Collected players"),
+        BotCommand("playerScores", "Player scores")
     ]
     
     bot.set_my_commands(commands)

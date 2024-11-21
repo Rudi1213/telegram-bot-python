@@ -12,3 +12,10 @@ def get_player(user_id):
         return None
     return user_players[user_id]
 
+def getAllPlayerScores():
+    nameScores = {}
+    for user_id, player in user_players.items():
+        nameScores[player.name] = player.score
+
+    return nameScores
+

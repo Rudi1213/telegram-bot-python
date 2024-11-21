@@ -43,9 +43,15 @@ def cock_fight(message):
 @bot.message_handler(commands=['collectedPlayers'])
 def print_collected_players(message):
     bot.send_message(chat_id=message.chat.id,text = "Trying to print collection")
-    for player in user_players.items():
-        name = player[0]
+    for user_id, player in user_players.items():
+        name = player.name
         bot.send_message(chat_id=message.chat.id, text=name)
+
+@bot.message_handler(commands=['playerScores'])
+def print_player_scores(message):
+    playerScores = getAllPlayerScores()
+    for name, score in playerScores.items():
+        bot.send_message(chat_id=message.chat.id, text=name +" :" + str(score))
 
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
