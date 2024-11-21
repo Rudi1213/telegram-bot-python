@@ -1,5 +1,4 @@
-from random import random
-from player import Player
+import random
 
 def cockfight(player1, player2):
     winner = random.randint(1,2)
