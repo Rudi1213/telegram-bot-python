@@ -16,6 +16,10 @@ tracked_message_id = None
 tracked_user_name = None
 tracked_user_id = None
 
+special_cock_user_id = None
+special_cock_message_id = None
+special_cock_number = None
+
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
     bot.reply_to(message, "Hello! I'm a simple Telegram bot.")
@@ -35,7 +39,6 @@ def cock_fight(message):
     tracked_user_name = username
     tracked_user_id = userID
     add_player(message.from_user.id,username)
-    print("Player added sucessfully " + str(message.from_user.id) + " " + username)
     sent_message = bot.reply_to(message,username + " initiated a big cock fight, Reply to combat 3===D")
     tracked_message_id = sent_message.message_id
 
@@ -62,8 +65,30 @@ def handle_reply(message):
         bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
         bot.send_message(chat_id=message.chat.id,text ="Let's cockfight!")
         add_player(message.from_user.id,second_user_name)
-        print("Player added sucessfully " + str(message.from_user.id) + " " + second_user_name)
-        cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
+        winner = cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
+        bot.send_message(chat_id=message.chat.id, text=winner.name + "won the fight")
+
+@bot.message_handler(commands=['specialCockBonus'])
+def special_cock_bonus_create(message):
+    sent_message = bot.reply_to(message, message.from_user.username + " guess the special cock numberto double your cock")
+    global special_cock_user_id
+    special_cock_user_id = message.from_user.id
+    global special_cock_message_id
+    special_cock_message_id = sent_message.message_id
+    global special_cock_number
+    special_cock_number = random.randint(1,10)
+    print("SPECIAL COCK NUMBER" + str(special_cock_number))
+
+@bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
+def handle_reply(message):
+
+    if message.reply_to_message.message_id == special_cock_message_id:
+        if message.text.isdigit():
+            sentNumber = int(message.text)
+            if sentNumber == special_cock_number:
+                bot.send_message(chat_id=message.chat.id, text="Your cock gets doubled :)")
+            else:
+                bot.send_message(chat_id=message.chat.id, text="Time to cut :) :)")
 
 
 @bot.message_handler(func=lambda msg: True)
