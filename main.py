@@ -21,7 +21,11 @@ def provide_random(message):
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
-    bot.reply_to(message, message.text + " Julian leckt keine Eier :)")
+    number = random.randint(1,2)
+    if number == 1:
+        bot.reply_to(message, message.text + " Julian leckt keine Eier :)")
+    else:
+        bot.reply_to(message, message.text + " Julian leckt Eier :)")
 
 
 
