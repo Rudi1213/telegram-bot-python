@@ -95,7 +95,7 @@ def handle_reply(message):
         player2 = get_player(message.from_user.id)
         winner = cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
         bot.send_message(chat_id=message.chat.id, text=winner.name + " won the fight")
-        bot.send_message(chat_id=message.chat.id, text="New cock sizes\n " + player1.name + ": " + str(player1.score) +"\n " + player2.name +": " + str(player2.score))
+        bot.send_message(chat_id=message.chat.id, text="New cock sizes\n" + player1.name + ": " + str(player1.score) +"\n" + player2.name +": " + str(player2.score))
 
 @bot.message_handler(commands=['specialCockBonus'])
 def special_cock_bonus_create(message):
