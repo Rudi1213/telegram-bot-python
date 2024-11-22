@@ -51,7 +51,6 @@ def cock_fight(message):
 
 @bot.message_handler(commands=['collectedPlayers'])
 def print_collected_players(message):
-    bot.send_message(chat_id=message.chat.id, text=str(message.chat.id))
     for user_id, player in user_players.items():
         name = player.name
         bot.send_message(chat_id=message.chat.id, text=name)
@@ -90,13 +89,13 @@ def handle_reply(message):
 
     if message.reply_to_message.message_id == tracked_message_id:
         second_user_name = message.from_user.username
-        bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
-        add_player(message.from_user.id,second_user_name)
         player1 = get_player(tracked_user_id)
         player2 = get_player(message.from_user.id)
         if player1.user_id == player2.user_id:
             bot.send_message(chat_id=message.chat.id, text="You can't cockfight yourself")
         else:
+            bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
+            add_player(message.from_user.id,second_user_name)
             winner = cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
             bot.send_message(chat_id=message.chat.id, text=winner.name + " won the fight")
             bot.send_message(chat_id=message.chat.id, text="New cock sizes\n" + player1.name + ": " + str(player1.score) +"\n" + player2.name +": " + str(player2.score))
@@ -131,6 +130,11 @@ def echo_all(message):
         bot.reply_to(message, message.text + " Julian leckt keine Eier :)")
     else:
         bot.reply_to(message, message.text + " Julian leckt Eier :)")
+
+@bot.message_handler(commands=['debug'])
+def debugMessager(message):
+    bot.send_message(chat_id=232352084, text="TEST")
+
 
 
 def debug(debugMessage):
