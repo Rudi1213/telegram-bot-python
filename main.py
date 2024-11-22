@@ -129,6 +129,12 @@ def show_commands(message):
 def debugMessager(message):
     bot.send_message(chat_id=admin_chat, text=message.chat.id)
 
+
+@bot.message_handler(commands=['testGroup'])
+def asyncGroupMessage(message):
+    bot.send_message(chat_id=group_chat, text="Test asynchronous grp message")
+
+
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
     add_player(message.from_user.id, message.from_user.username)
@@ -138,9 +144,6 @@ def echo_all(message):
     else:
         bot.reply_to(message, message.text + " Julian leckt Eier :)")
 
-@bot.message_handler(commands=['testGroup'])
-def asyncGroupMessage(message):
-    bot.send_message(chat_id=group_chat, text="Test asynchronous grp message")
 
 
 
