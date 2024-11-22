@@ -91,7 +91,7 @@ def handle_reply(message):
 
 @bot.message_handler(commands=['specialCockBonus'])
 def special_cock_bonus_create(message):
-    sent_message = bot.reply_to(message, message.from_user.username + " guess the special cock number to double your cock")
+    sent_message = bot.reply_to(message, message.from_user.username + " guess the special cock number to double your cock (reply to this message)")
     global special_cock_user_id
     special_cock_user_id = message.from_user.id
     global special_cock_message_id
