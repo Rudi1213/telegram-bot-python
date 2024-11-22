@@ -10,6 +10,7 @@ load_dotenv()
 
 # Replace 'TELEGRAM_BOT_TOKEN' with the token you received from BotFather
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+admin_chat = os.getenv('MY_CHAT_ID')
 bot = telebot.TeleBot(TOKEN)
 
 tracked_message_id = None
@@ -20,6 +21,8 @@ special_cock_user_id = None
 special_cock_message_id = None
 special_cock_number = None
 special_cock_guesses = 0
+
+
 
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
@@ -123,8 +126,7 @@ def show_commands(message):
 
 @bot.message_handler(commands=['debug'])
 def debugMessager(message):
-    bot.send_message(chat_id=message.chat.id,text="TEEEEST")
-    bot.send_message(chat_id=232352084, text="TEST")
+    bot.send_message(chat_id=admin_chat, text=message.chat.id)
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
