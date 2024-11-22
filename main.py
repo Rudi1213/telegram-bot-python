@@ -11,6 +11,7 @@ load_dotenv()
 # Replace 'TELEGRAM_BOT_TOKEN' with the token you received from BotFather
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 admin_chat = os.getenv('MY_CHAT_ID')
+group_chat = os.getenv('GROUP_CHAT_ID')
 bot = telebot.TeleBot(TOKEN)
 
 tracked_message_id = None
@@ -137,6 +138,9 @@ def echo_all(message):
     else:
         bot.reply_to(message, message.text + " Julian leckt Eier :)")
 
+@bot.message_handler(commands=['testGroup'])
+def asyncGroupMessage(message):
+    bot.send_message(chat_id=group_chat, text="Test asynchronous grp message")
 
 
 
