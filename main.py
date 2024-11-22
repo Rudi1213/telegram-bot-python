@@ -72,7 +72,7 @@ def print_player_scores(message):
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
 def handle_reply(message):
     game = get_cockfight(message.reply_to_message.message_id)
-    if game is not None and game.gametype == GameType.COCKFIGHT:
+    if game is not None and game.gameType == GameType.COCKFIGHT:
         if message.text.isdigit():
             if game.guesses > 0:
                 player = get_player(message.from_user.id)
@@ -98,7 +98,7 @@ def handle_reply(message):
             bot.send_message(chat_id=message.chat.id, text="Schreib ma a Zahl du Bastard")
     elif get_specialcock(message.reply_to_message.message_id) is not None:
         game = get_specialcock(message.reply_to_message.message_id)
-        if game.gametype == GameType.SPECIAL:
+        if game.gameType == GameType.SPECIAL:
             second_user_name = message.from_user.username
             player1 = get_player(tracked_user_id)
             player2 = get_player(message.from_user.id)
