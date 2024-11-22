@@ -4,7 +4,6 @@ import random
 from userManagement import *
 from dotenv import load_dotenv
 from cockmachine import *
-from commands import get_commands
 
 # Load environment variables
 load_dotenv()
