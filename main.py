@@ -23,7 +23,12 @@ special_cock_guesses = 0
 
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
-    bot.reply_to(message, "Hello! I'm a simple Telegram bot.")
+    lul = random.randint(1,100)
+    if lul != 52:
+        bot.reply_to(message, "Hello! I'm a simple Telegram bot.")
+    else:
+        bot.reply_to(message, "Hurensohn")
+
 
 @bot.message_handler(commands=['random'])
 def provide_random(message):
@@ -46,7 +51,6 @@ def cock_fight(message):
 
 @bot.message_handler(commands=['collectedPlayers'])
 def print_collected_players(message):
-    bot.send_message(chat_id=message.chat.id,text = "Trying to print collection")
     for user_id, player in user_players.items():
         name = player.name
         bot.send_message(chat_id=message.chat.id, text=name)
@@ -81,14 +85,13 @@ def handle_reply(message):
     if message.reply_to_message.message_id == tracked_message_id:
         second_user_name = message.from_user.username
         bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
-        bot.send_message(chat_id=message.chat.id,text ="Let's cockfight!")
         add_player(message.from_user.id,second_user_name)
         winner = cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
-        bot.send_message(chat_id=message.chat.id, text=winner.name + "won the fight")
+        bot.send_message(chat_id=message.chat.id, text=winner.name + " won the fight")
 
 @bot.message_handler(commands=['specialCockBonus'])
 def special_cock_bonus_create(message):
-    sent_message = bot.reply_to(message, message.from_user.username + " guess the special cock numberto double your cock")
+    sent_message = bot.reply_to(message, message.from_user.username + " guess the special cock number to double your cock")
     global special_cock_user_id
     special_cock_user_id = message.from_user.id
     global special_cock_message_id
@@ -97,7 +100,6 @@ def special_cock_bonus_create(message):
     special_cock_number = random.randint(1,10)
     global special_cock_guesses
     special_cock_guesses= 2
-    bot.send_message(chat_id=message.chat.id, text="SPECIAL COCK NUMBER" + str(special_cock_number))
     print("SPECIAL COCK NUMBER" + str(special_cock_number))
 
 @bot.message_handler(commands=['showCommands'])

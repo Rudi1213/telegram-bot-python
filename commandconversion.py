@@ -1,13 +1,21 @@
+from telebot import TeleBot
+from telebot.types import BotCommand
+import os
+from dotenv import load_dotenv
+
 def getCommands():
     commands = [
-        "start", "Start the bot",
-        "hello", "Hello",
-        "random", "Funny random gen",
-       "cockfight", "Cockfight",
-        "collectedPlayers", "Show all collected players",
-        "playerScores", "Player scores",
-        "specialCockBonus", "Special cock bonus",
-        "showCommands", "Shows all available commands"
+        BotCommand("start", "Start the bot"),
+        BotCommand("hello", "Hello"),
+        BotCommand("random", "Funny random gen"),
+        BotCommand("cockfight", "Cockfight"),
+        BotCommand("collectedPlayers", "Show all collected players"),
+        BotCommand("playerScores", "Player scores"),
+        BotCommand("specialCockBonus", "Special cock bonus"),
+        BotCommand("showCommands", "Shows all available commands"),
     ]
 
-    return commands
+    commandsList = {}
+    for command in commands:
+        commandsList[str(command.command)] = str(command.description)
+    return commandsList
