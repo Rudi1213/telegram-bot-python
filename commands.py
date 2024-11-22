@@ -26,7 +26,7 @@ def register_commands(bot: TeleBot):
     bot.set_my_commands(commands)
 
     for command in commands:
-        commandList[command.command] = command.description
+        commandList[str(command.command)] = str(command.description)
 
 register_commands(bot)
 
