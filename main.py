@@ -100,14 +100,14 @@ def handle_reply(message):
         game = get_cockfight(message.reply_to_message.message_id)
         if game.gameType == GameType.COCKFIGHT:
             second_user_name = message.from_user.username
-            player1 = get_player(tracked_user_id)
+            player1 = get_player(game.player.user_id)
             player2 = get_player(message.from_user.id)
             if player1.user_id == player2.user_id:
                 bot.send_message(chat_id=message.chat.id, text="You can't cockfight yourself")
             else:
-                bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
+                bot.reply_to(message, second_user_name + " wants to cockfight " + player1.name)
                 add_player(message.from_user.id,second_user_name)
-                winner = cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
+                winner = cockfight(player1,player2)
                 bot.send_message(chat_id=message.chat.id, text=winner.name + " won the fight")
                 bot.send_message(chat_id=message.chat.id, text="New cock sizes\n" + player1.name + ": " + str(player1.score) +"\n" + player2.name +": " + str(player2.score))
                 remove_cockfight(game.messageID)
