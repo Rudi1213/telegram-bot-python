@@ -21,7 +21,7 @@ def register_commands(bot: TeleBot):
         BotCommand("collectedPlayers","Show collected players"),
         BotCommand("playerScores", "Show player scores"),
         BotCommand("specialCockBonus","Special cock bonus game"),
-        BotCommand("show Commands", "shows all commands"),
+        BotCommand("showCommands", "shows all commands"),
     ]
 
     commandList = commands
