@@ -91,6 +91,7 @@ def handle_reply(message):
 
 @bot.message_handler(commands=['specialCockBonus'])
 def special_cock_bonus_create(message):
+    add_player(message.from_user.id, message.from_user.username)
     sent_message = bot.reply_to(message, message.from_user.username + " guess the special cock number to double your cock (reply to this message)")
     global special_cock_user_id
     special_cock_user_id = message.from_user.id
@@ -104,6 +105,7 @@ def special_cock_bonus_create(message):
 
 @bot.message_handler(commands=['showCommands'])
 def show_commands(message):
+    add_player(message.from_user.id, message.from_user.username)
     commands = getCommands()
     for command, description in commands.items():
         bot.send_message(chat_id=message.chat.id, text="/"+command + " : " + description)
@@ -111,6 +113,7 @@ def show_commands(message):
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
+    add_player(message.from_user.id, message.from_user.username)
     number = random.randint(1,2)
     if number == 1:
         bot.reply_to(message, message.text + " Julian leckt keine Eier :)")
