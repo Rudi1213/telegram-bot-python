@@ -59,7 +59,14 @@ def print_player_scores(message):
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
 def handle_reply(message):
-
+    bot.send_message(chat_id=message.chat.id, text="TRIGGERED" + str(special_cock_number))
+    if message.reply_to_message.message_id == special_cock_message_id:
+        if message.text.isdigit():
+            sentNumber = int(message.text)
+            if sentNumber == special_cock_number:
+                bot.send_message(chat_id=message.chat.id, text="Your cock gets doubled :)")
+            else:
+                bot.send_message(chat_id=message.chat.id, text="Time to cut :) :)")
     if message.reply_to_message.message_id == tracked_message_id:
         second_user_name = message.from_user.username
         bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
@@ -79,17 +86,6 @@ def special_cock_bonus_create(message):
     special_cock_number = random.randint(1,10)
     bot.send_message(chat_id=message.chat.id, text="SPECIAL COCK NUMBER" + str(special_cock_number))
     print("SPECIAL COCK NUMBER" + str(special_cock_number))
-
-@bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
-def handle_reply(message):
-    bot.send_message(chat_id=message.chat.id, text="TRIGGERED" + str(special_cock_number))
-    if message.reply_to_message.message_id == special_cock_message_id:
-        if message.text.isdigit():
-            sentNumber = int(message.text)
-            if sentNumber == special_cock_number:
-                bot.send_message(chat_id=message.chat.id, text="Your cock gets doubled :)")
-            else:
-                bot.send_message(chat_id=message.chat.id, text="Time to cut :) :)")
 
 
 @bot.message_handler(func=lambda msg: True)
