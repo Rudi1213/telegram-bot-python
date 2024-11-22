@@ -29,8 +29,8 @@ def register_commands(bot: TeleBot):
     bot.set_my_commands(commands)
 
 def get_commands():
-    global commands
-    return commands
+    global commandList
+    return commandList
 
 
 register_commands(bot)

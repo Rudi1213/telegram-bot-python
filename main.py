@@ -4,7 +4,8 @@ import random
 from userManagement import *
 from dotenv import load_dotenv
 from cockmachine import *
-from commands import *
+from commands import commandList
+from commands import get_commands
 
 # Load environment variables
 load_dotenv()
@@ -20,8 +21,6 @@ tracked_user_id = None
 special_cock_user_id = None
 special_cock_message_id = None
 special_cock_number = None
-
-register_commands(bot)
 
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
