@@ -121,6 +121,10 @@ def show_commands(message):
     for command, description in commands.items():
         bot.send_message(chat_id=message.chat.id, text="/"+command + " : " + description)
 
+@bot.message_handler(commands=['debug'])
+def debugMessager(message):
+    bot.send_message(chat_id=message.chat.id,text="TEEEEST")
+    bot.send_message(chat_id=232352084, text="TEST")
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
@@ -131,14 +135,11 @@ def echo_all(message):
     else:
         bot.reply_to(message, message.text + " Julian leckt Eier :)")
 
-@bot.message_handler(commands=['debug'])
-def debugMessager(message):
-    bot.send_message(chat_id=message.chat.id,text="TEEEEST")
-    bot.send_message(chat_id=232352084, text="TEST")
 
 
 
-def debug(debugMessage):
+
+def manualDebug(debugMessage):
     bot.send_message(chat_id=debugMessage.chat.id, text=debugMessage.text)
 
 
