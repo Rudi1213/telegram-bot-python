@@ -4,6 +4,7 @@ import random
 from userManagement import *
 from dotenv import load_dotenv
 from cockmachine import *
+from commandconversion import getCommands
 # Load environment variables
 load_dotenv()
 
@@ -91,6 +92,13 @@ def special_cock_bonus_create(message):
     special_cock_number = random.randint(1,10)
     bot.send_message(chat_id=message.chat.id, text="SPECIAL COCK NUMBER" + str(special_cock_number))
     print("SPECIAL COCK NUMBER" + str(special_cock_number))
+
+@bot.message_handler(commands=['showCommands'])
+def show_commands(message):
+    commands = getCommands()
+    for command in commands:
+        bot.send_message(chat_id=message.chat.id, text=command[0] + " : " + command[1])
+
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
