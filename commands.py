@@ -20,6 +20,7 @@ def register_commands(bot: TeleBot):
         BotCommand("playerScores", "Player scores"),
         BotCommand("specialCockBonus","Special cock bonus"),
         BotCommand("showCommands", "Shows all available commands"),
+        BotCommand("debug"," Debug messages to myself")
     ]
 
 
