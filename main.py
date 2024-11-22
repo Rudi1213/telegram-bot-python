@@ -5,6 +5,8 @@ from userManagement import *
 from dotenv import load_dotenv
 from cockmachine import *
 from commandconversion import getCommands
+from patchnotes import patchnotes
+
 # Load environment variables
 load_dotenv()
 
@@ -21,7 +23,6 @@ tracked_user_id = None
 special_cock_user_id = None
 special_cock_message_id = None
 special_cock_number = None
-special_cock_guesses = 0
 
 
 
@@ -49,8 +50,10 @@ def cock_fight(message):
     tracked_user_name = username
     tracked_user_id = userID
     add_player(message.from_user.id,username)
+    player = get_player(message.from_user.id)
     sent_message = bot.reply_to(message,username + " initiated a big cock fight, Reply to combat 3===D")
     tracked_message_id = sent_message.message_id
+    add_cockfight(player,tracked_message_id)
 
 
 @bot.message_handler(commands=['collectedPlayers'])
@@ -68,41 +71,47 @@ def print_player_scores(message):
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
 def handle_reply(message):
-    if message.reply_to_message.message_id == special_cock_message_id:
+    game = get_cockfight(message.reply_to_message.message_id)
+    if game is not None and game.gametype == GameType.COCKFIGHT:
         if message.text.isdigit():
-            global special_cock_guesses
-            if special_cock_guesses > 0:
+            if game.guesses > 0:
                 player = get_player(message.from_user.id)
-                special_cock_guesses = special_cock_guesses-1
+                game.guesses = game.guesses-1
                 sentNumber = int(message.text)
                 if sentNumber == special_cock_number:
                     bot.send_message(chat_id=message.chat.id, text="Your cock gets doubled :)")
                     multiplyCock(player,2)
                     bot.send_message(chat_id=message.chat.id, text="Your new length: " + str(player.score))
+                    remove_cockfight(game.messageID)
 
                 else:
                     bot.send_message(chat_id=message.chat.id, text="Time to cut :) :)")
                     divideCock(player,2)
                     bot.send_message(chat_id=message.chat.id, text="Your new length: " + str(player.score))
+                    remove_cockfight(game.messageID)
+
 
             else:
                 bot.send_message(chat_id=message.chat.id, text="No guesses left for this special cock suprise (Create a new one)")
 
         else:
             bot.send_message(chat_id=message.chat.id, text="Schreib ma a Zahl du Bastard")
+    elif get_specialcock(message.reply_to_message.message_id) is not None:
+        game = get_specialcock(message.reply_to_message.message_id)
+        if game.gametype == GameType.SPECIAL:
+            second_user_name = message.from_user.username
+            player1 = get_player(tracked_user_id)
+            player2 = get_player(message.from_user.id)
+            if player1.user_id == player2.user_id:
+                bot.send_message(chat_id=message.chat.id, text="You can't cockfight yourself")
+            else:
+                bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
+                add_player(message.from_user.id,second_user_name)
+                winner = cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
+                bot.send_message(chat_id=message.chat.id, text=winner.name + " won the fight")
+                bot.send_message(chat_id=message.chat.id, text="New cock sizes\n" + player1.name + ": " + str(player1.score) +"\n" + player2.name +": " + str(player2.score))
+                remove_cockfight(game.messageID)
 
-    if message.reply_to_message.message_id == tracked_message_id:
-        second_user_name = message.from_user.username
-        player1 = get_player(tracked_user_id)
-        player2 = get_player(message.from_user.id)
-        if player1.user_id == player2.user_id:
-            bot.send_message(chat_id=message.chat.id, text="You can't cockfight yourself")
-        else:
-            bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
-            add_player(message.from_user.id,second_user_name)
-            winner = cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
-            bot.send_message(chat_id=message.chat.id, text=winner.name + " won the fight")
-            bot.send_message(chat_id=message.chat.id, text="New cock sizes\n" + player1.name + ": " + str(player1.score) +"\n" + player2.name +": " + str(player2.score))
 
 @bot.message_handler(commands=['specialCockBonus'])
 def special_cock_bonus_create(message):
@@ -156,13 +165,8 @@ def manualDebug(debugMessage):
     bot.send_message(chat_id=debugMessage.chat.id, text=debugMessage.text)
 
 def send_patch_notes():
-    # Replace with your desired chat ID
+    bot.send_message(chat_id=group_chat, text=patchnotes)
 
-    patch_notes = (
-        "Hello! The bot has just been updated. Here are the latest changes:\n\n"
-        "- This is test patch notes"
-    )
-    bot.send_message(chat_id=group_chat, text=patch_notes)
 
 send_patch_notes()
 bot.polling()
