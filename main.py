@@ -105,7 +105,7 @@ def special_cock_bonus_create(message):
 @bot.message_handler(commands=['showCommands'])
 def show_commands(message):
     commands = getCommands()
-    for command, description in commands:
+    for command, description in commands.items():
         bot.send_message(chat_id=message.chat.id, text=command + " : " + description)
 
 
