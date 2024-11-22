@@ -131,7 +131,7 @@ def special_cock_bonus_create(message):
 def show_commands(message):
     add_player(message.from_user.id, message.from_user.username)
     commands = getCommands()
-    commandMessage = None
+    commandMessage = " "
     for command, description in commands.items():
         commandMessage = commandMessage + "/" + command+ " : " + description + "\n"
 

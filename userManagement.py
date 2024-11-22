@@ -33,10 +33,14 @@ def add_specialcock(player,messageID):
     player_specialcock[messageID] = Game(player, messageID, GameType.SPECIAL)
 
 def remove_cockfight(messageID):
-    player_cockfights[messageID].delete()
+    global player_cockfights
+    if messageID in player_cockfights:
+        del player_cockfights[messageID]
 
 def remove_specialcock(messageID):
-    player_specialcock[messageID].delete()
+    global player_specialcock
+    if messageID in player_specialcock:
+        del player_specialcock[messageID]
 
 def get_cockfight(messageID):
     if messageID not in player_cockfights:
