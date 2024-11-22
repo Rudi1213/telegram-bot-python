@@ -19,6 +19,7 @@ tracked_user_id = None
 special_cock_user_id = None
 special_cock_message_id = None
 special_cock_number = None
+special_cock_guesses = 0
 
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
@@ -59,17 +60,21 @@ def print_player_scores(message):
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
 def handle_reply(message):
-    bot.send_message(chat_id=message.chat.id, text="TRIGGERED")
     if message.reply_to_message.message_id == special_cock_message_id:
-        bot.send_message(chat_id=message.chat.id, text="SECONDTRIGGER")
         if message.text.isdigit():
-            sentNumber = int(message.text)
-            if sentNumber == special_cock_number:
-                bot.send_message(chat_id=message.chat.id, text="Your cock gets doubled :)")
-                multiplyCock(get_player(message.from_user.id),2)
+            global special_cock_guesses
+            if special_cock_guesses > 0:
+                special_cock_guesses = special_cock_guesses-1
+                sentNumber = int(message.text)
+                if sentNumber == special_cock_number:
+                    bot.send_message(chat_id=message.chat.id, text="Your cock gets doubled :)")
+                    multiplyCock(get_player(message.from_user.id),2)
+                else:
+                    bot.send_message(chat_id=message.chat.id, text="Time to cut :) :)")
+                    divideCock(get_player(message.from_user.id),2)
             else:
-                bot.send_message(chat_id=message.chat.id, text="Time to cut :) :)")
-                divideCock(get_player(message.from_user.id),2)
+                bot.send_message(chat_id=message.chat.id, text="No guesses left for this special cock suprise (Create a new one)")
+
         else:
             bot.send_message(chat_id=message.chat.id, text="Schreib ma a Zahl du Bastard")
 
@@ -90,14 +95,16 @@ def special_cock_bonus_create(message):
     special_cock_message_id = sent_message.message_id
     global special_cock_number
     special_cock_number = random.randint(1,10)
+    global special_cock_guesses
+    special_cock_guesses= 2
     bot.send_message(chat_id=message.chat.id, text="SPECIAL COCK NUMBER" + str(special_cock_number))
     print("SPECIAL COCK NUMBER" + str(special_cock_number))
 
 @bot.message_handler(commands=['showCommands'])
 def show_commands(message):
     commands = getCommands()
-    for command in commands:
-        bot.send_message(chat_id=message.chat.id, text=command[0] + " : " + command[1])
+    for command, description in commands:
+        bot.send_message(chat_id=message.chat.id, text=command + " : " + description)
 
 
 @bot.message_handler(func=lambda msg: True)
