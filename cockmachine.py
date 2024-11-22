@@ -12,3 +12,14 @@ def cockfight(player1, player2):
         return player2
 
 
+def multiplyCock(player,multiplicator):
+    player.score = player.score*multiplicator
+
+def divideCock(player,divisor):
+    player.score = player.score/divisor
+
+def growCock(player,amount):
+    player.score = player.score+amount
+
+def shrinkCock(player,amount):
+    player.score = player.score-amount
