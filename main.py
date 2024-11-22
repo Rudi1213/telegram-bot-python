@@ -3,7 +3,8 @@ import telebot
 import random
 from userManagement import *
 from dotenv import load_dotenv
-from cockmachine import cockfight
+from cockmachine import *
+from commands import get_commands
 
 # Load environment variables
 load_dotenv()
@@ -66,8 +67,13 @@ def handle_reply(message):
             sentNumber = int(message.text)
             if sentNumber == special_cock_number:
                 bot.send_message(chat_id=message.chat.id, text="Your cock gets doubled :)")
+                multiplyCock(get_player(message.from_user.id),2)
             else:
                 bot.send_message(chat_id=message.chat.id, text="Time to cut :) :)")
+                divideCock(get_player(message.from_user.id),2)
+        else:
+            bot.send_message(chat_id=message.chat.id, text="Schreib ma a Zahl du Bastard")
+
     if message.reply_to_message.message_id == tracked_message_id:
         second_user_name = message.from_user.username
         bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
@@ -87,6 +93,12 @@ def special_cock_bonus_create(message):
     special_cock_number = random.randint(1,10)
     bot.send_message(chat_id=message.chat.id, text="SPECIAL COCK NUMBER" + str(special_cock_number))
     print("SPECIAL COCK NUMBER" + str(special_cock_number))
+
+@bot.message_handler(commands=['showCommands'])
+def show_commands(message):
+    commandsList = get_commands()
+    for command, description in commandsList.items():
+        bot.send_message(chat_id=message.chat.id, text=command + " : " + description)
 
 
 @bot.message_handler(func=lambda msg: True)

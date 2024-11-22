@@ -14,11 +14,12 @@ def register_commands(bot: TeleBot):
     commands = [
         BotCommand("start", "Start the bot"),
         BotCommand("hello", "Hello"),
-        BotCommand("random", "Randoooom"),
+        BotCommand("random", "Funny random gen"),
         BotCommand("cockfight","Cockfight"),
-        BotCommand("collectedPlayers","Collected players"),
+        BotCommand("collectedPlayers","Show all collected players"),
         BotCommand("playerScores", "Player scores"),
-        BotCommand("specialCockBonus","Special cock bonus")
+        BotCommand("specialCockBonus","Special cock bonus"),
+        BotCommand("showCommands", "Shows all available commands"),
     ]
 
 
