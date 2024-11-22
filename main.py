@@ -133,6 +133,7 @@ def echo_all(message):
 
 @bot.message_handler(commands=['debug'])
 def debugMessager(message):
+    bot.send_message(chat_id=message.chat.id,text="TEEEEST")
     bot.send_message(chat_id=232352084, text="TEST")
 
 
