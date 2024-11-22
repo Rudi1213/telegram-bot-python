@@ -59,8 +59,9 @@ def print_player_scores(message):
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
 def handle_reply(message):
-    bot.send_message(chat_id=message.chat.id, text="TRIGGERED" + str(special_cock_number))
+    bot.send_message(chat_id=message.chat.id, text="TRIGGERED")
     if message.reply_to_message.message_id == special_cock_message_id:
+        bot.send_message(chat_id=message.chat.id, text="SECONDTRIGGER")
         if message.text.isdigit():
             sentNumber = int(message.text)
             if sentNumber == special_cock_number:
