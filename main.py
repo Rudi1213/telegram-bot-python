@@ -25,7 +25,7 @@ special_cock_guesses = 0
 
 
 
-@bot.message_handler(commands=['start', 'hello'])
+@bot.message_handler(commands=['hello'])
 def send_welcome(message):
     lul = random.randint(1,100)
     if lul != 52:
@@ -122,8 +122,12 @@ def special_cock_bonus_create(message):
 def show_commands(message):
     add_player(message.from_user.id, message.from_user.username)
     commands = getCommands()
+    commandMessage = None
     for command, description in commands.items():
-        bot.send_message(chat_id=message.chat.id, text="/"+command + " : " + description)
+        commandMessage = commandMessage + "/" + command+ " : " + description + "\n"
+
+    bot.send_message(chat_id=message.chat.id, text=commandMessage)
+
 
 @bot.message_handler(commands=['debug'])
 def debugMessager(message):
@@ -151,5 +155,14 @@ def echo_all(message):
 def manualDebug(debugMessage):
     bot.send_message(chat_id=debugMessage.chat.id, text=debugMessage.text)
 
+def send_patch_notes():
+    # Replace with your desired chat ID
 
+    patch_notes = (
+        "Hello! The bot has just been updated. Here are the latest changes:\n\n"
+        "- This is test patch notes"
+    )
+    bot.send_message(chat_id=group_chat, text=patch_notes)
+
+send_patch_notes()
 bot.polling()
