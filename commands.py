@@ -9,10 +9,10 @@ load_dotenv()
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 bot = TeleBot(TOKEN)
 
-commands = None
+commandList = None
 
 def register_commands(bot: TeleBot):
-    global commands
+    global commandList
     commands = [
         BotCommand("start", "Hello"),
         BotCommand("hello", "Hello"),
@@ -23,6 +23,8 @@ def register_commands(bot: TeleBot):
         BotCommand("specialCockBonus","Special cock bonus game"),
         BotCommand("show Commands", "shows all commands"),
     ]
+
+    commandList = commands
     
     bot.set_my_commands(commands)
 
