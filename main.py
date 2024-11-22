@@ -3,9 +3,7 @@ import telebot
 import random
 from userManagement import *
 from dotenv import load_dotenv
-from cockmachine import *
-from commands import commandList
-from commands import get_commands
+from cockmachine import cockfight
 
 # Load environment variables
 load_dotenv()
@@ -58,28 +56,6 @@ def print_player_scores(message):
     for name, score in playerScores.items():
         bot.send_message(chat_id=message.chat.id, text=name +" : " + str(score))
 
-@bot.message_handler(commands=['specialCockBonus'])
-def special_cock_bonus_create(message):
-    if get_player(message.from_user.id).score != 0:
-        sent_message = bot.reply_to(message, message.from_user.username + " guess the special cock number to double your cock (Reply to this message)")
-        global special_cock_user_id
-        special_cock_user_id = message.from_user.id
-        global special_cock_message_id
-        special_cock_message_id = sent_message.message_id
-        global special_cock_number
-        special_cock_number = random.randint(1,10)
-        bot.send_message(chat_id=message.chat.id, text="SPECIAL COCK NUMBER" + str(special_cock_number))
-        print("SPECIAL COCK NUMBER" + str(special_cock_number))
-    else:
-        bot.send_message(chat_id=message.chat.id, text="Loss da erstmoi n Cock wochsn")
-
-@bot.message_handler(commands=['showCommands'])
-def show_commands(message):
-    commands = get_commands()
-    for BotCommand in commands.items():
-        bot.send_message(chat_id=message.chat.id, text=BotCommand.command + " " + BotCommand.description)
-
-
 
 @bot.message_handler(func=lambda msg: msg.reply_to_message is not None)
 def handle_reply(message):
@@ -90,12 +66,8 @@ def handle_reply(message):
             sentNumber = int(message.text)
             if sentNumber == special_cock_number:
                 bot.send_message(chat_id=message.chat.id, text="Your cock gets doubled :)")
-                multiplyCock(get_player(message.from_user.id),2)
             else:
                 bot.send_message(chat_id=message.chat.id, text="Time to cut :) :)")
-                divideCock(get_player(message.from_user.id),2)
-        else:
-            bot.send_message(chat_id=message.chat.id, text="Gib a Zahl ein du Bastard")
     if message.reply_to_message.message_id == tracked_message_id:
         second_user_name = message.from_user.username
         bot.reply_to(message, second_user_name + " wants to cockfight " + tracked_user_name)
@@ -104,7 +76,17 @@ def handle_reply(message):
         winner = cockfight(get_player(tracked_user_id),get_player(message.from_user.id))
         bot.send_message(chat_id=message.chat.id, text=winner.name + "won the fight")
 
-
+@bot.message_handler(commands=['specialCockBonus'])
+def special_cock_bonus_create(message):
+    sent_message = bot.reply_to(message, message.from_user.username + " guess the special cock numberto double your cock")
+    global special_cock_user_id
+    special_cock_user_id = message.from_user.id
+    global special_cock_message_id
+    special_cock_message_id = sent_message.message_id
+    global special_cock_number
+    special_cock_number = random.randint(1,10)
+    bot.send_message(chat_id=message.chat.id, text="SPECIAL COCK NUMBER" + str(special_cock_number))
+    print("SPECIAL COCK NUMBER" + str(special_cock_number))
 
 
 @bot.message_handler(func=lambda msg: True)
@@ -114,8 +96,6 @@ def echo_all(message):
         bot.reply_to(message, message.text + " Julian leckt keine Eier :)")
     else:
         bot.reply_to(message, message.text + " Julian leckt Eier :)")
-
-
 
 
 
