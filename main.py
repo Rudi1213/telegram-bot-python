@@ -168,5 +168,5 @@ def send_patch_notes():
     bot.send_message(chat_id=group_chat, text=patchnotes)
 
 
-send_patch_notes()
+
 bot.polling()
