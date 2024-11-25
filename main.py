@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from cockmachine import *
 from commandconversion import getCommands
 from patchnotes import patchnotes
+from pictureManagement import getRandomPic
 
 # Load environment variables
 load_dotenv()
@@ -157,7 +158,11 @@ def gaming(message):
     groupMessage = groupMessage + "It's gaming time jimbos"
     bot.send_message(chat_id=message.chat.id, text=groupMessage)
 
-
+@bot.message_handler(commands=['schuiz'])
+def schuiz(message):
+    random_picture = getRandomPic("pics/schuiz")
+    with open(random_picture, "rb") as photo:
+        bot.send_photo(chat_id=message.chat.id, photo=photo, caption="")
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
@@ -176,7 +181,8 @@ def manualDebug(debugMessage):
     bot.send_message(chat_id=debugMessage.chat.id, text=debugMessage.text)
 
 def send_patch_notes():
-    bot.send_message(chat_id=group_chat, text=patchnotes)
+    if patchnotes != "":
+        bot.send_message(chat_id=group_chat, text=patchnotes)
 
 
 

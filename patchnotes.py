@@ -1,1 +1,1 @@
-patchnotes = "/gaming Command now should work :)"
+patchnotes = ""
