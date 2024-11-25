@@ -16,7 +16,8 @@ def getCommands():
         BotCommand("testGroup", "Test group message"),
         BotCommand("gaming", "Gaming time"),
         BotCommand("schuiz", "Schuiz command"),
-        BotCommand("gasperl", "Gasperl command")
+        BotCommand("gasperl", "Gasperl command"),
+        BotCommand("kefa", "Kefa command"),
     ]
 
     commandsList = {}
