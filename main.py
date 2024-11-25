@@ -163,7 +163,9 @@ def gaming(message):
 @bot.message_handler(commands=['schuiz','gasperl','kefa'])
 def sendMedia(message):
     command = message.text
-    directory = "media"+command
+    extractedCommand = "media"+command
+    directory = extractedCommand.split('@')[0]
+
     random_Media = getRandomMedia(directory)
     for pic_format in picture_formats:
         if pic_format in random_Media.lower():
