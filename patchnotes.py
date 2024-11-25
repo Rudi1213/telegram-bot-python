@@ -1,1 +1,1 @@
-patchnotes = "/gasperl command added"
+patchnotes = ""

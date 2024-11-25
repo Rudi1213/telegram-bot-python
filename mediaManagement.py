@@ -15,3 +15,10 @@ def grabAllGIFs(directory):
 
 def getRandomGIF(directory):
     return random.choice(grabAllGIFs(directory))
+
+def grabAllMedia(directory):
+    supported_formats = ('.jpg', '.jpeg', '.png', '.gif', '.mp4')
+    return [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(supported_formats)]
+
+def getRandomMedia(directory):
+    return random.choice(grabAllMedia(directory))
