@@ -159,17 +159,14 @@ def gaming(message):
     groupMessage = groupMessage + "It's gaming time jimbos"
     bot.send_message(chat_id=message.chat.id, text=groupMessage)
 
-@bot.message_handler(commands=['schuiz','kek'])
-def schuiz(message):
-    random_picture = getRandomPic("media/schuiz")
-    with open(random_picture, "rb") as photo:
-        bot.send_photo(chat_id=message.chat.id, photo=photo, caption="")
+@bot.message_handler(commands=['schuiz','gasperl','kefa'])
+def sendMedia(message):
+    command = message.text
+    directory = "media"+command
+    bot.send_message(admin_chat, directory)
+    random_picture = getRandomMedia(directory)
+    bot.send_message(admin_chat, random_picture)
 
-@bot.message_handler(commands=['gasperl'])
-def gasperl(message):
-    random_video = getRandomGIF("media/gasperl")
-    with open(random_video, "rb") as video:
-        bot.send_video(chat_id=message.chat.id, video=video, caption="")
 
 
 
