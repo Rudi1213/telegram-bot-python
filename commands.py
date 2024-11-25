@@ -20,7 +20,9 @@ def register_commands(bot: TeleBot):
         BotCommand("showCommands", "Shows all available commands"),
         BotCommand("debug"," Debug messages to myself"),
         BotCommand("testGroup", "Test group message"),
-        BotCommand("gaming", "Gaming time")
+        BotCommand("gaming", "Gaming time"),
+        BotCommand("schuiz", "Schuiz command"),
+        BotCommand("gasperl","Gasperl command")
     ]
 
 

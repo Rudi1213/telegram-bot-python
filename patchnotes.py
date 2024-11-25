@@ -1,1 +1,1 @@
-patchnotes = "/schuiz command added"
+patchnotes = "/gasperl command added"

@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from cockmachine import *
 from commandconversion import getCommands
 from patchnotes import patchnotes
-from pictureManagement import getRandomPic
+from mediaManagement import *
 from userManagement import *
 
 # Load environment variables
@@ -164,6 +164,17 @@ def schuiz(message):
     random_picture = getRandomPic("pics/schuiz")
     with open(random_picture, "rb") as photo:
         bot.send_photo(chat_id=message.chat.id, photo=photo, caption="")
+
+@bot.message_handler(commands=['gasperl'])
+def gasperl(message):
+    random_video = getRandomGIF("pics/gasperl")
+    with open(random_video, "rb") as video:
+        bot.send_video(chat_id=message.chat.id, video=video, caption="")
+
+
+
+
+
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
