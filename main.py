@@ -170,6 +170,7 @@ def sendMedia(message):
     for pic_format in picture_formats:
         if pic_format in random_Media.lower():
             with open(random_Media, "rb") as photo:
+                bot.send_message(message.chat.id, "Triggered")
                 bot.send_photo(message.chat.id, photo)
                 return
 
