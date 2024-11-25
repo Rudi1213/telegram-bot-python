@@ -1,1 +1,1 @@
-patchnotes = ""
+patchnotes = "/schuiz command added"
