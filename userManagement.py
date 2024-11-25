@@ -51,3 +51,17 @@ def get_specialcock(messageID):
     if messageID not in player_specialcock:
         return None
     return player_specialcock[messageID]
+
+
+def getAllUsers():
+    users = {
+        "@ooo155",
+        "@EinKlassiker",
+        "@CE0Flex",
+        "@schuizreal",
+        "@Rudi121333",
+        "@Martin1509"
+    }
+
+    return users
+
