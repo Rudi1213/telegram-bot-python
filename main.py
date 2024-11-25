@@ -1,12 +1,13 @@
 import os
+
 import telebot
-import random
-from userManagement import *
 from dotenv import load_dotenv
+
 from cockmachine import *
 from commandconversion import getCommands
 from patchnotes import patchnotes
 from pictureManagement import getRandomPic
+from userManagement import *
 
 # Load environment variables
 load_dotenv()
