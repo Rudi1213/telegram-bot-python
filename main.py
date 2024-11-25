@@ -162,12 +162,11 @@ def gaming(message):
 
 @bot.message_handler(commands=['gasperl'])
 def sendMedia(message):
-    bot.send_message(chat_id=admin_chat, text="works")
     command = message.text
     extractedCommand = "media"+command
-    bot.send_message(chat_id=admin_chat, text="works2")
+    bot.send_message(chat_id=admin_chat, text=extractedCommand)
     directory = extractedCommand.split('@')[0]
-    bot.send_message(chat_id=admin_chat, text="works3")
+    bot.send_message(chat_id=admin_chat, text=directory)
 
     random_Media = getRandomMedia(directory)
     for pic_format in picture_formats:
