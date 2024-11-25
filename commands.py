@@ -24,6 +24,7 @@ def register_commands(bot: TeleBot):
         BotCommand("schuiz", "Schuiz command"),
         BotCommand("gasperl","Gasperl command"),
         BotCommand("kefa", "Kefa command"),
+        BotCommand("dahad", "Dahad command"),
     ]
 
 

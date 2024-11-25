@@ -160,7 +160,7 @@ def gaming(message):
     groupMessage = groupMessage + "It's gaming time jimbos"
     bot.send_message(chat_id=message.chat.id, text=groupMessage)
 
-@bot.message_handler(commands=['gasperl','schuiz','kefa'])
+@bot.message_handler(commands=['gasperl','schuiz','kefa','dahad'])
 def sendMedia(message):
     command = message.text
     extractedCommand = "media"+command
