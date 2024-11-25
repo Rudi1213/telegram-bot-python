@@ -168,17 +168,20 @@ def sendMedia(message):
     bot.send_message(chat_id=admin_chat, text="2"+extractedCommand)
     directory = extractedCommand.split('@')[0]
     bot.send_message(chat_id=admin_chat, text="3"+directory)
-
     random_Media = getRandomMedia(directory)
+    bot.send_message(chat_id=admin_chat, text="4"+directory)
+
     for pic_format in picture_formats:
         if pic_format in random_Media.lower():
-            bot.send_photo(message.chat.id, random_Media)
-            return
+            with open(random_Media, "rb") as photo:
+                bot.send_photo(message.chat.id, photo)
+                return
 
     for video_format in video_formats:
         if video_format in random_Media.lower():
-            bot.send_video(message.chat.id, random_Media)
-            return
+            with open(random_Media, "rb") as video:
+                bot.send_video(message.chat.id, video)
+                return
 
 
 
