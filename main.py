@@ -9,6 +9,7 @@ from patchnotes import patchnotes
 from mediaManagement import *
 from userManagement import *
 
+
 # Load environment variables
 load_dotenv()
 
@@ -163,10 +164,16 @@ def gaming(message):
 def sendMedia(message):
     command = message.text
     directory = "media"+command
-    bot.send_message(admin_chat, directory)
-    random_picture = getRandomMedia(directory)
-    bot.send_message(admin_chat, random_picture)
+    random_Media = getRandomMedia(directory)
+    for pic_format in picture_formats:
+        if pic_format in random_Media.lower():
+            bot.send_photo(message.chat.id, random_Media)
+            return
 
+    for video_format in video_formats:
+        if video_format in random_Media.lower():
+            bot.send_video(message.chat.id, random_Media)
+            return
 
 
 

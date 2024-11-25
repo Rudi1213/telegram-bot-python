@@ -1,10 +1,11 @@
 import os
 import random
 
+picture_formats = ('.jpg', '.jpeg', '.png')
+video_formats = ('.mp4', '.mov', '.avi', '.m4v', '.wmv', '.gif')
 
 def grabAllPics(directory):
-    supported_formats = ('.jpg', '.jpeg', '.png')  # Add more formats if needed
-    return [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(supported_formats)]
+    return [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(picture_formats)]
 
 def getRandomPic(directory):
     return random.choice(grabAllPics(directory))
@@ -17,8 +18,7 @@ def getRandomGIF(directory):
     return random.choice(grabAllGIFs(directory))
 
 def grabAllMedia(directory):
-    supported_formats = ('.jpg', '.jpeg', '.png', '.gif', '.mp4')
-    return [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(supported_formats)]
+    return [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(video_formats)]
 
 def getRandomMedia(directory):
     return random.choice(grabAllMedia(directory))
