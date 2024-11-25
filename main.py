@@ -160,11 +160,14 @@ def gaming(message):
     groupMessage = groupMessage + "It's gaming time jimbos"
     bot.send_message(chat_id=message.chat.id, text=groupMessage)
 
-@bot.message_handler(commands=['schuiz','gasperl','kefa'])
+@bot.message_handler(commands=['gasperl'])
 def sendMedia(message):
+    bot.send_message(chat_id=admin_chat, text="works")
     command = message.text
     extractedCommand = "media"+command
+    bot.send_message(chat_id=admin_chat, text="works2")
     directory = extractedCommand.split('@')[0]
+    bot.send_message(chat_id=admin_chat, text="works3")
 
     random_Media = getRandomMedia(directory)
     for pic_format in picture_formats:
