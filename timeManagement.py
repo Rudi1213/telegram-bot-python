@@ -4,7 +4,7 @@ import pytz
 def isArbeitslosenGamerHours():
     vienna_tz = pytz.timezone('Europe/Vienna')
     vienna_time = datetime.now(vienna_tz)
-    if vienna_time.hour < 15:
+    if vienna_time.hour < 19:
         return True
     else:
         return False
