@@ -9,6 +9,8 @@ from patchnotes import patchnotes
 from mediaManagement import *
 from userManagement import *
 
+from timeManagement import *
+
 
 # Load environment variables
 load_dotenv()
@@ -152,13 +154,17 @@ def asyncGroupMessage(message):
 
 @bot.message_handler(commands=['gaming'])
 def gaming(message):
-    users = getAllUsers()
-    groupMessage = ""
-    for user in users:
-        groupMessage = groupMessage + user + "\n"
+    if isArbeitslosenGamerHours():
+        Zeit = getViennaTime()
+        bot.reply_to(message, "Es is grodmoi " + Zeit + " suach da a Hokn")
+    else:
+        users = getAllUsers()
+        groupMessage = ""
+        for user in users:
+            groupMessage = groupMessage + user + "\n"
 
-    groupMessage = groupMessage + "It's gaming time jimbos"
-    bot.send_message(chat_id=message.chat.id, text=groupMessage)
+        groupMessage = groupMessage + "It's gaming time jimbos"
+        bot.send_message(chat_id=message.chat.id, text=groupMessage)
 
 @bot.message_handler(commands=['gasperl','schuiz','kefa','dahad','thot'])
 def sendMedia(message):
