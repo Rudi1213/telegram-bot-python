@@ -10,7 +10,8 @@ def isArbeitslosenGamerHours():
         return False
 
 def getViennaTime():
-    viennaTime = ""
     vienna_tz = pytz.timezone('Europe/Vienna')
     vienna_time = datetime.now(vienna_tz)
     viennaTime = vienna_time.strftime("%H:%M")
+
+    return viennaTime
