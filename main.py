@@ -133,6 +133,7 @@ def special_cock_bonus_create(message):
     player = get_player(message.from_user.id)
     tracked_message_id = sent_message.message_id
     add_specialcock(player, tracked_message_id)
+    bot.send_message(chat_id=admin_chat, text=str(special_cock_number))
 
 
 @bot.message_handler(commands=['showCommands'])
