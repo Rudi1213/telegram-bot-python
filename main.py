@@ -78,6 +78,7 @@ def print_player_scores(message):
 def handle_reply(message):
     game = get_specialcock(message.reply_to_message.message_id)
     if game is not None and game.gameType == GameType.SPECIAL:
+        bot.send_message(chat_id=admin_chat, text="TEST")
         if message.text.isdigit():
             if game.guesses > 0:
                 player = get_player(message.from_user.id)
