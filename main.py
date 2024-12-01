@@ -131,7 +131,10 @@ def special_cock_bonus_create(message):
     special_cock_number = random.randint(1,10)
     global special_cock_guesses
     special_cock_guesses= 2
-    print("SPECIAL COCK NUMBER" + str(special_cock_number))
+    player = get_player(message.from_user.id)
+    tracked_message_id = sent_message.message_id
+    add_specialcock(player, tracked_message_id)
+
 
 @bot.message_handler(commands=['showCommands'])
 def show_commands(message):
