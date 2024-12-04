@@ -1,1 +1,1 @@
-patchnotes = "geht wieda"
+patchnotes = ""
