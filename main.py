@@ -157,10 +157,14 @@ def debugMessager(message):
 @bot.message_handler(commands=['save'])
 def savePlayers(message):
     userManagement.save_players()
+    bot.send_message(chat_id=admin_chat, text="Players saved successfully")
+
 
 @bot.message_handler(commands=['load'])
 def loadPlayers(message):
     userManagement.load_players()
+    bot.send_message(chat_id=admin_chat, text="Players loaded successfully")
+
 
 
 @bot.message_handler(commands=['testGroup'])
