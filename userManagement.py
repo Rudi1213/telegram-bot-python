@@ -1,12 +1,15 @@
 from player import Player
 from game import Game
 from gameTypes import GameType
+import json
 
 user_players = {}
 
 player_cockfights = {}
 
 player_specialcock = {}
+
+PLAYER_SAVE_FILE_NAME = "players.json"
 
 
 def add_player(user_id, name):
@@ -62,6 +65,17 @@ def getAllUsers():
         "@Rudi121333",
         "@Martin1509"
     }
-
     return users
+
+def save_players():
+    with open(PLAYER_SAVE_FILE_NAME, "w") as file:
+        json.dump([player.to_dict() for player in user_players.items()], file, indent=4)
+
+def load_players():
+    try:
+        with open(PLAYER_SAVE_FILE_NAME, "r") as file:
+            global user_players
+            user_players = [Player.from_dict(player_data) for player_data in json.load(file)]
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []  # Return empty list if file doesn't exist or is empty
 

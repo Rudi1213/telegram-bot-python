@@ -3,6 +3,7 @@ import os
 import telebot
 from dotenv import load_dotenv
 
+import userManagement
 from cockmachine import *
 from commandconversion import getCommands
 from patchnotes import patchnotes
@@ -148,10 +149,18 @@ def show_commands(message):
 
     bot.send_message(chat_id=message.chat.id, text=commandMessage)
 
-
+######################## DEBUG #######################################
 @bot.message_handler(commands=['debug'])
 def debugMessager(message):
     bot.send_message(chat_id=admin_chat, text=message.chat.id)
+
+@bot.message_handler(commands=['save'])
+def savePlayers(message):
+    userManagement.save_players()
+
+@bot.message_handler(commands=['load'])
+def loadPlayers(message):
+    userManagement.load_players()
 
 
 @bot.message_handler(commands=['testGroup'])
