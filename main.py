@@ -87,17 +87,19 @@ def handle_reply(message):
                     bot.send_message(chat_id=message.chat.id, text="Your cock gets doubled :)")
                     multiplyCock(player,2)
                     bot.send_message(chat_id=message.chat.id, text="Your new length: " + str(player.score))
-                    remove_cockfight(game.messageID)
+                    remove_specialcock(game.messageID)
 
                 else:
                     bot.send_message(chat_id=message.chat.id, text="Time to cut :) :)")
                     divideCock(player,2)
                     bot.send_message(chat_id=message.chat.id, text="Your new length: " + str(player.score))
-                    remove_cockfight(game.messageID)
+                    if game.guesses == 0:
+                        remove_specialcock(game.messageID)
 
 
             else:
                 bot.send_message(chat_id=message.chat.id, text="No guesses left for this special cock suprise (Create a new one)")
+                remove_specialcock(game.messageID)
 
         else:
             bot.send_message(chat_id=message.chat.id, text="Schreib ma a Zahl du Bastard")
