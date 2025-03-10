@@ -149,7 +149,7 @@ def show_commands(message):
 
     bot.send_message(chat_id=message.chat.id, text=commandMessage)
 
-######################## DEBUG #######################################
+######################## DEBUG ########################################
 @bot.message_handler(commands=['debug'])
 def debugMessager(message):
     bot.send_message(chat_id=admin_chat, text=message.chat.id)
