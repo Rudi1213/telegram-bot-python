@@ -69,12 +69,11 @@ def getAllUsers():
 
 def save_players():
     with open(PLAYER_SAVE_FILE_NAME, "w") as file:
-        json.dump([player.to_dict() for player in user_players.items()], file, indent=4)
+        json.dump([player.to_dict() for player in user_players], file, indent=4)
 
 def load_players():
     try:
         with open(PLAYER_SAVE_FILE_NAME, "r") as file:
-            global user_players
             user_players = [Player.from_dict(player_data) for player_data in json.load(file)]
     except (FileNotFoundError, json.JSONDecodeError):
         return []  # Return empty list if file doesn't exist or is empty
