@@ -3,7 +3,6 @@ import psycopg2
 from player import Player
 from game import Game
 from gameTypes import GameType
-import json
 import os
 
 user_players = {}
