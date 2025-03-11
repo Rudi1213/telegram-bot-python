@@ -14,18 +14,3 @@ class Player:
             cursor.execute("""INSERT INTO players (id, name, score)VALUES (%s, %s, %s)""", (self.user_id, self.name, self.score))
             connection.commit()
 
-
-
-
-
-
-
-
-    def to_dict(self):
-        return {"user_id": self.user_id, "name": self.name, "score": self.score}
-
-    @classmethod
-    def from_dict(cls, data):
-        player = cls(data["user_id"], data["name"])
-        player.score = data["score"]
-        return player
