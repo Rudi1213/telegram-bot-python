@@ -74,10 +74,4 @@ def save_players():
     for player in user_players.values():
         player.save_to_db(connection)
 
-def load_players():
-    try:
-        with open(PLAYER_SAVE_FILE_NAME, "r") as file:
-            user_players = [Player.from_dict(player_data) for player_data in json.load(file)]
-    except (FileNotFoundError, json.JSONDecodeError):
-        return []  # Return empty list if file doesn't exist or is empty
 
