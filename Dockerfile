@@ -4,6 +4,7 @@ WORKDIR /app
 COPY . /app
 
 RUN pip install --upgrade poetry
+RUN pip install psycopg2
 RUN poetry config virtualenvs.create false
 RUN poetry install
 

@@ -1,7 +1,10 @@
+import psycopg2
+
 from player import Player
 from game import Game
 from gameTypes import GameType
 import json
+import os
 
 user_players = {}
 
@@ -9,8 +12,8 @@ player_cockfights = {}
 
 player_specialcock = {}
 
-PLAYER_SAVE_FILE_NAME = "players.json"
-
+DATABASE_URL = os.getenv("DATABASE_URL")
+connection = psycopg2.connect(DATABASE_URL)
 
 def add_player(user_id, name):
     if user_id not in user_players:
@@ -68,8 +71,8 @@ def getAllUsers():
     return users
 
 def save_players():
-    with open(PLAYER_SAVE_FILE_NAME, "w") as file:
-        json.dump([player.to_dict() for player in user_players], file, indent=4)
+    for player in user_players.values():
+        player.save_to_db(connection)
 
 def load_players():
     try:
