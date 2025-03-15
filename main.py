@@ -168,7 +168,7 @@ def asyncGroupMessage(message):
 def gaming(message):
     if isArbeitslosenGamerHours():
         Zeit = getViennaTime()
-        DateTime = getViennaTime()
+        DateTime = getVienna_Time()
         bot.reply_to(message, DateTime.weekday())
         bot.reply_to(message, "Es is grodmoi " + Zeit + " suach da a Hokn")
     else:
