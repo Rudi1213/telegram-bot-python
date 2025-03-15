@@ -1,5 +1,6 @@
 import os
-
+from datetime import datetime
+import pytz
 import telebot
 from dotenv import load_dotenv
 
@@ -167,6 +168,8 @@ def asyncGroupMessage(message):
 def gaming(message):
     if isArbeitslosenGamerHours():
         Zeit = getViennaTime()
+        DateTime = getViennaTime()
+        bot.reply_to(message, DateTime.weekday())
         bot.reply_to(message, "Es is grodmoi " + Zeit + " suach da a Hokn")
     else:
         users = getAllUsers()
