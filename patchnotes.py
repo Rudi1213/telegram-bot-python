@@ -1,1 +1,1 @@
-patchnotes = "The bot now longer harasses user's of the gaming command on the weekend"
+patchnotes = "The bot now longer harasses users of the gaming command on the weekend"
