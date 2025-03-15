@@ -15,9 +15,3 @@ def getViennaTime():
     viennaTime = vienna_time.strftime("%H:%M")
 
     return viennaTime
-
-def getVienna_Time():
-    vienna_tz = pytz.timezone('Europe/Vienna')
-    vienna_time = datetime.now(vienna_tz)
-
-    return vienna_time
