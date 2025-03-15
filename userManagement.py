@@ -12,7 +12,7 @@ player_cockfights = {}
 player_specialcock = {}
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-connection = psycopg2.connect(DATABASE_URL)
+##connection = psycopg2.connect(DATABASE_URL)
 
 def add_player(user_id, name):
     if user_id not in user_players:
@@ -71,6 +71,7 @@ def getAllUsers():
 
 def save_players():
     for player in user_players.values():
-        player.save_to_db(connection)
+        ##player.save_to_db(connection)
+        test = '2'
 
 
