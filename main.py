@@ -10,7 +10,7 @@ from commandconversion import getCommands
 from patchnotes import patchnotes
 from mediaManagement import *
 from userManagement import *
-
+patchnotes_sent = 0
 from timeManagement import *
 
 
@@ -224,8 +224,9 @@ def send_patch_notes():
 
 
 
+if patchnotes_sent == 0:
+    send_patch_notes()
+    patchnotes_sent = 1
 
-
-send_patch_notes()
 
 bot.polling()
