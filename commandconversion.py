@@ -15,6 +15,7 @@ def getCommands():
         BotCommand("debug", " Debug messages to myself"),
         BotCommand("testGroup", "Test group message"),
         BotCommand("gaming", "Gaming time"),
+        BotCommand("all", "Tags all users"),
         BotCommand("schuiz", "Schuiz command"),
         BotCommand("gasperl", "Gasperl command"),
         BotCommand("kefa", "Kefa command"),
