@@ -1,1 +1,1 @@
-patchnotes = "/all command added"
+patchnotes = ""

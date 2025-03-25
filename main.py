@@ -164,6 +164,15 @@ def savePlayers(message):
 def asyncGroupMessage(message):
     bot.send_message(chat_id=group_chat, text="Test asynchronous grp message")
 
+@bot.message_handler(commands=['all'])
+def all(message):
+    users = getAllUsers()
+    groupMessage = ""
+    for user in users:
+        groupMessage = groupMessage + user + "\n"
+    bot.send_message(chat_id=message.chat.id, test=groupMessage)
+
+
 @bot.message_handler(commands=['gaming'])
 def gaming(message):
     if isArbeitslosenGamerHours():
@@ -178,13 +187,6 @@ def gaming(message):
         groupMessage = groupMessage + "It's gaming time jimbos"
         bot.send_message(chat_id=message.chat.id, text=groupMessage)
 
-@bot.message_handler(commands=['all'])
-def all(message):
-    users = getAllUsers()
-    groupMessage = ""
-    for user in users:
-        groupMessage = groupMessage + user + "\n"
-    bot.send_message(chat_id=message.chat.id, test=groupMessage)
 
 
 
