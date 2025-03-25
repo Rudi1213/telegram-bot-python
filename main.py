@@ -170,7 +170,7 @@ def all(message):
     groupMessage = ""
     for user in users:
         groupMessage = groupMessage + user + "\n"
-    bot.send_message(chat_id=message.chat.id, test=groupMessage)
+    bot.send_message(chat_id=message.chat.id, text=groupMessage)
 
 
 @bot.message_handler(commands=['gaming'])
