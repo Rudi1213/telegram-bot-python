@@ -1,7 +1,4 @@
-from telebot import TeleBot
 from telebot.types import BotCommand
-import os
-from dotenv import load_dotenv
 
 def getCommands():
     commands = [
