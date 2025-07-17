@@ -236,9 +236,9 @@ def send_patch_notes():
 
 
 
-if patchnotes_sent == 0:
-    send_patch_notes()
-    patchnotes_sent = 1
+if __name__ == '__main__':
+    if patchnotes_sent == 0:
+        send_patch_notes()
+        patchnotes_sent = 1
 
-
-bot.polling()
+    bot.polling()
