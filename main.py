@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import userManagement
 from cockmachine import *
 from commandconversion import getCommands
+from commands import register_commands
 from patchnotes import patchnotes
 from mediaManagement import *
 from userManagement import *
@@ -22,6 +23,7 @@ TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 admin_chat = os.getenv('MY_CHAT_ID')
 group_chat = os.getenv('GROUP_CHAT_ID')
 bot = telebot.TeleBot(TOKEN)
+register_commands(bot)
 
 tracked_message_id = None
 tracked_user_name = None
