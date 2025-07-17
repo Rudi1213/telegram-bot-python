@@ -13,7 +13,7 @@ from userManagement import *
 patchnotes_sent = 0
 from timeManagement import *
 
-
+#Test
 # Load environment variables
 load_dotenv()
 
