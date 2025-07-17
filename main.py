@@ -3,15 +3,29 @@ from datetime import datetime
 import pytz
 import telebot
 from dotenv import load_dotenv
+import random
 
 import userManagement
-from cockmachine import *
+from cockmachine import cockfight, multiplyCock, divideCock
 from commandconversion import getCommands
 from patchnotes import patchnotes
-from mediaManagement import *
-from userManagement import *
+from mediaManagement import getRandomMedia, picture_formats, video_formats
+from userManagement import (
+    add_player,
+    get_player,
+    getAllPlayerScores,
+    add_cockfight,
+    get_cockfight,
+    remove_cockfight,
+    add_specialcock,
+    get_specialcock,
+    remove_specialcock,
+    getAllUsers,
+    user_players,
+    GameType,
+)
 patchnotes_sent = 0
-from timeManagement import *
+from timeManagement import isArbeitslosenGamerHours, getViennaTime
 
 #Test
 # Load environment variables
